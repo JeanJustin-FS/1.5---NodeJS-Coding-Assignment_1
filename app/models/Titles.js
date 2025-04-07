@@ -9,18 +9,18 @@ title: {
 },
 id: {
     type: Number,
-    required: [true, 'id is required'],
+    // required: [true, 'id is required'],
 },
 completed: {
     type: Boolean,
     default: false
 },
-range:{
-    type: Number,
-    min: 0,
-    max: 204,
-    default: 0
-},
+// range:{
+//     type: Number,
+//     min: 0,
+//     max: 204,
+//     default: 0
+// },
 userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

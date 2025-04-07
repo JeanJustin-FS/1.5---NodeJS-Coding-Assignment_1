@@ -10,17 +10,6 @@ const getAllTodos = async (req, res) => {
     });
 };
 
-// GET ALL route 
-// router.get('/', async (req, res) => {
-//     try {
-//     const result = await todoService();
-//     console.log('params >>>', 'GET');
-//     res.status(200).json(result.data);
-//     } catch (error) {
-//     res.status(500).json({ error: error.message });
-//     }
-// });
-
 const getTodoById = async (req, res) => {
     const {id}  = req.params;
     console.log('Creating new todo with data >>>', id);
@@ -30,48 +19,6 @@ const getTodoById = async (req, res) => {
         message: `${req.method} - CREATE REQUEST SUCCESSFUL`,
     });
 };
-
-
-// const getTodoById = async  (req, res) => {
-//         const {id} = req.params;
-//         console.log('params >>>', id);
-        
-//         todoServiceById(id)
-//         .then(result => {
-//             if (!result || !result.data) {
-//             return res.status(404).json({ error: 'Todo not found' });
-//             }
-//             res.status(200).json(result.data);
-//         })
-//         .catch(err => {
-//             console.error('Error fetching todo:', err);
-        
-//             if (!res.headersSent) {
-//             res.status(500).json({ error: err.message || 'Internal server error' });
-//             }
-//         });
-//     };
-
-    // GET by ID route 
-// router.get('/:id', (req, res) => {
-//     const {id} = req.params;
-//     console.log('params >>>', id);
-    
-//     todoServiceById(id)
-//     .then(result => {
-//         if (!result || !result.data) {
-//         return res.status(404).json({ error: 'Todo not found' });
-//         }
-//         res.status(200).json(result.data);
-//     })
-//     .catch(err => {
-//         console.error('Error fetching todo:', err);
-    
-//         if (!res.headersSent) {
-//         res.status(500).json({ error: err.message || 'Internal server error' });
-//         }
-//     });
-// });
 
 const createTodo = async (req, res) => {
     const {todos}  = req.body;
@@ -96,47 +43,6 @@ const createTodo = async (req, res) => {
     }
 };
 
-// const createTodo = async (req, res) => {
-//     try {
-//     const todoData = req.body;
-//     const newTodos = await Todos.create(todoData);
-//     console.log('Creating new todo with data >>>', newTodos);
-//     const result = await todoService(todoData);
-//     if (!result || !result.data) {
-//         return res.status(400).json({ error: 'Failed to create todo' });
-//     }
-//     res.status(201).json(result.data);
-//     } catch (err) {
-//     console.error('Error creating todo:', err);
-//     if (!res.headersSent) {
-//         res.status(500).json({ error: err.message || 'Internal server error' });
-//     }
-//     }
-// };
-
-
-// POST route 
-// router.post('/', (req, res) => {
-//     const todoData = req.body;
-//     console.log('Creating new todo with data >>>', todoData);
-    
-//     // Call your service function that creates a new todo
-//     todoService(todoData) 
-//     .then(result => {
-//         if (!result || !result.data) {
-//         return res.status(400).json({ error: 'Failed to create todo' });
-//         }
-//         res.status(201).json(result.data);  
-//     })
-//     .catch(err => {
-//         console.error('Error creating todo:', err);
-//         if (!res.headersSent) {
-//         res.status(500).json({ error: err.message || 'Internal server error' });
-//         }
-//     });
-// });
-
-
 const updateTodo = async (req, res) => {
     const  {id}  = req.params;
 try {
@@ -157,51 +63,6 @@ catch (error) {
 }
 };
 
-// const updateTodo = async (req, res) => {
-//     try {
-//     const {id} = req.params;
-//     console.log('params >>>', id);
-//     const todoData = req.body;
-    
-//     const existingTodo = await todoServiceById(id);
-//     if (!existingTodo || !existingTodo.data) {
-//         return res.status(404).json({ error: 'Todo not found' });
-//     }
-    
-//     const result = await todoService(id, todoData);
-//     if (!result || !result.data) {
-//         return res.status(400).json({ error: 'Failed to update todo' });
-//     }
-//     res.status(200).json(result.data);
-//     } catch (err) {
-//     console.error('Error updating todo:', err);
-//     if (!res.headersSent) {
-//         res.status(500).json({ error: err.message || 'Internal server error' });
-//     }
-//     }
-// };
-
-  // PUT route 
-// router.put('/:id', (req, res) => {
-//     const {id} = req.params;
-//     console.log('params >>>', id);
-//     const todoData = req.body;
-    
-//     todoServiceById(id)
-//     .then(result => {
-//         if (!result || !result.data) {
-//         return res.status(404).json({ error: 'Todo not found' });
-//         }
-//         res.status(200).json(result.data);
-//     })
-//     .catch(err => {
-//         console.error('Error updating todo:', err);
-//         if (!res.headersSent) {
-//         res.status(500).json({ error: err.message || 'Internal server error' });
-//         }
-//     });
-// });
-
 const deleteTodo = async (req, res) => {
     const  {id}  = req.params;
     try {
@@ -221,49 +82,6 @@ const deleteTodo = async (req, res) => {
         }
     }
     };
-
-// const deleteTodo = async (req, res) => {
-//     try {
-//     const {id} = req.params;
-//     console.log('params >>>', id);
-    
-//     const existingTodo = await todoServiceById(id);
-//     if (!existingTodo || !existingTodo.data) {
-//         return res.status(404).json({ error: 'Todo not found' });
-//     }
-    
-//     const result = await todoServiceById(id);
-//     if (!result) {
-//         return res.status(400).json({ error: 'Failed to delete todo' });
-//     }
-//     res.status(200).json({ message: 'Todo deleted successfully' });
-//     } catch (err) {
-//     console.error('Error deleting todo:', err);
-//     if (!res.headersSent) {
-//         res.status(500).json({ error: err.message || 'Internal server error' });
-//     }
-//     }
-// };
-
-  // DELETE route
-// router.delete('/:id', (req, res) => {
-//     const {id} = req.params;
-//     console.log('params >>>', id);
-    
-//     todoServiceById(id)
-//     .then(result => {
-//         if (!result) {
-//         return res.status(404).json({ error: 'Todo not found' });
-//         }
-//         res.status(200).json({ message: 'Todo deleted successfully' });
-//     })
-//     .catch(err => {
-//         console.error('Error deleting todo:', err);
-//         if (!res.headersSent) {
-//         res.status(500).json({ error: err.message || 'Internal server error' });
-//         }
-//     });
-// });
 
 module.exports = {
     getAllTodos,

@@ -12,3 +12,5 @@ const { getAllTitles,
     router.post('/', createTitle);
     router.put('/:id', updateTitle);
     router.delete('/:id', deleteTitle);
+
+    module.exports = router; 
