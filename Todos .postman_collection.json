@@ -1,0 +1,725 @@
+{
+	"info": {
+		"_postman_id": "7659c117-cdce-47ab-956e-d4f1741138b5",
+		"name": "Todos ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36779382"
+	},
+	"item": [
+		{
+			"name": "ID",
+			"item": [
+				{
+					"name": "All Todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"Status code is 200 (All Request Successful)\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'success': true\", function () {",
+									"    pm.response.to.have.jsonBody('success', true);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'message': 'GET - GET ALL REQUEST SUCCESSFUL'\", function () {",
+									"    pm.response.to.have.jsonBody('message', 'GET - GET ALL REQUEST SUCCESSFUL');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 (Id Request Successful)\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Response body contains the correct data\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data._id).to.not.be.undefined;",
+									"    pm.expect(jsonData.data.title).to.equal(\"Sight Unseen\");",
+									"    pm.expect(jsonData.data.completed).to.be.a(\"boolean\");",
+									"    pm.expect(jsonData.data.createdAt).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$/);",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"    pm.expect(jsonData.message).to.equal(\"GET - GET ALL REQUEST SUCCESSFUL\");           ",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/todos/67e49efa33df78bda2e7e73e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todos",
+								"67e49efa33df78bda2e7e73e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 (Create Request Successful)\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'success': true\", function () {",
+									"    pm.response.to.have.jsonBody('success', true);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'message': 'POST - CREATE REQUEST SUCCESSFUL'\", function () {",
+									"    pm.response.to.have.jsonBody('message', 'POST - CREATE REQUEST SUCCESSFUL');",
+									"});",
+									"",
+									"// pm.test(\"Response has created resourse ID \", function () {",
+									"//     const responseJson = pm.response.json();",
+									"//     pm.expect(responseJson).to.have.property('id').that.is.not.null;",
+									"//     pm.expect(responseJson.id).to.be.a('string'); ",
+									"",
+									"//     pm.collectionVariables.set(\"todoId\", responseJson.data_id); ",
+									"// });",
+									"",
+									"// pm.test(\"Response body contains 'data': { 'id': <resource_id> }\", function () {",
+									"//     const responseJson = pm.response.json();",
+									"//     pm.expect(responseJson).to.have.property('data').that.is.an('object');",
+									"//     pm.expect(responseJson.data).to.have.property('id').that.is.a('string');",
+									"// });",
+									"",
+									"// pm.test(\"Response body contains 'data': { 'name': <resource_name> }\", function () {",
+									"//     const responseJson = pm.response.json();",
+									"//     pm.expect(responseJson).to.have.property('data').that.is.an('object');",
+									"//     pm.expect(responseJson.data).to.have.property('name').that.is.a('string');",
+									"// });",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 16,\n    \"id\": 200,\n    \"title\": \"Maggie\",\n    \"completed\": true\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 (Update Request Successful)\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'success': true\", function () {",
+									"    pm.response.to.have.jsonBody('success', true);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'message': 'PUT - CREATE REQUEST SUCCESSFUL'\", function () {",
+									"    pm.response.to.have.jsonBody('message', 'PUT - CREATE REQUEST SUCCESSFUL');",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {     \n        \"title\": \"Tiffany\"\n\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/todos/67f3799bbb5d66f5350a1585",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todos",
+								"67f3799bbb5d66f5350a1585"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 (Delete Request Successful)\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'success': true\", function () {",
+									"    pm.response.to.have.jsonBody('success', true);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'message': 'DELETE - CREATE REQUEST SUCCESSFUL'\", function () {",
+									"    pm.response.to.have.jsonBody('message', 'DELETE - CREATE REQUEST SUCCESSFUL');",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " { \"title\": \"March Madness\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/todos/67f38bfa0ad37add95194d4a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todos",
+								"67f38bfa0ad37add95194d4a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Titles",
+			"item": [
+				{
+					"name": "All Titles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 (All Request Successful)\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'success': true\", function () {",
+									"    pm.response.to.have.jsonBody('success', true);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'message': 'GET - GET ALL REQUEST SUCCESSFUL'\", function () {",
+									"    pm.response.to.have.jsonBody('message', 'GET - GET ALL REQUEST SUCCESSFUL');",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Data field should exist and be an array\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.data).to.be.an('array');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Success field is boolean and has a value of true\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.success).to.be.a('boolean').and.to.equal(true);",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate the response schema for the presence of fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.data).to.exist.and.to.be.an('object');",
+									"    pm.expect(responseData.data._id).to.exist;",
+									"    pm.expect(responseData.data.completed).to.exist;",
+									"    pm.expect(responseData.data.createdAt).to.exist;",
+									"    pm.expect(responseData.data.updatedAt).to.exist;",
+									"    pm.expect(responseData.data.__v).to.exist;",
+									"    pm.expect(responseData.data.title).to.exist;",
+									"    pm.expect(responseData.success).to.exist;",
+									"    pm.expect(responseData.message).to.exist;",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/user/67f347af9033b73964e78eef",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"67f347af9033b73964e78eef"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type header is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields - success and message\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.property('success');",
+									"    pm.expect(responseData).to.have.property('message');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Success is a boolean value\", function () {",
+									"  const responseData = pm.response.json();",
+									"  pm.expect(responseData.success).to.be.a('boolean');",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {    \n     \"userId\": 16,\n        \"id\": 206,\n        \"title\": \"Feedback\",\n        \"completed\": true\n\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 (Update Request Successful)\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'success': true\", function () {",
+									"    pm.response.to.have.jsonBody('success', true);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'message': 'PUT - CREATE REQUEST SUCCESSFUL'\", function () {",
+									"    pm.response.to.have.jsonBody('message', 'PUT - CREATE REQUEST SUCCESSFUL');",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body has the required fields - data, success, and message\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.property('data');",
+									"    pm.expect(responseData).to.have.property('success');",
+									"    pm.expect(responseData).to.have.property('message');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Data field should not be empty\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.data).to.exist.and.to.not.be.empty;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate the schema of the response body\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.data).to.exist.and.to.be.a('string');",
+									"    pm.expect(responseData.success).to.exist.and.to.be.a('boolean');",
+									"    pm.expect(responseData.message).to.exist.and.to.be.a('string');",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "      {\"completed\": \"true\"}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/user/67f3485fdbc3cfb9cb68d7b9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"67f3485fdbc3cfb9cb68d7b9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 (Delete Request Successful)\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'success': true\", function () {",
+									"    pm.response.to.have.jsonBody('success', true);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'message': 'DELETE - CREATE REQUEST SUCCESSFUL'\", function () {",
+									"    pm.response.to.have.jsonBody('message', 'DELETE - CREATE REQUEST SUCCESSFUL');",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body contains 'data' with a valid schema\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.have.property('data').that.is.a('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body contains 'success' as a boolean value\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.have.property('success').that.is.a('boolean');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body contains 'message' as a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Message should not be empty\");",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/user/67f34bfce69c90e173a22177",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"67f34bfce69c90e173a22177"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "http://localhost:3000/api/v1/todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"data\" : \"Incoming message from client\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/todos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

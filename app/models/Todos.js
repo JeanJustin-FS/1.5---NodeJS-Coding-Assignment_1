@@ -17,7 +17,7 @@ const todoSchema = new mongoose.Schema({
   title: {
     type: String,
     // required: [true, 'Title is required'],
-    unique: [true, 'Title must be unique'],
+    // unique: [true, 'Title must be unique'],
   },
   completed: {
     type: Boolean,

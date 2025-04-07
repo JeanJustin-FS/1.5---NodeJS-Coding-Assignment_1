@@ -48,6 +48,8 @@ const createTodo = async (req, res) => {
         const newTodos = await Todos.create(todos);
         console.log('Creating new todo with data >>>', newTodos);
         res.status(200).json({ 
+            data: newTodos,
+            data: todos, 
             success: true,
             message: `${req.method} - CREATE REQUEST SUCCESSFUL`,
         });
