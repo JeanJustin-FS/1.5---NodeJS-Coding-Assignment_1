@@ -1,10 +1,10 @@
-const Todos = require('../models/Todos');
+const Titles = require('../models/Titles');
 // const {todoService,todoServiceById} = require('../services/todoService');
 
-const getAllTodos = async (req, res) => {
-    const todos = await Todos.find({});
+const getAllTitles = async (req, res) => {
+    const titles = await Titles.find({});
     res.status(200).json({ 
-        data: todos,
+        data: titles,
         success: true,
         message: `${req.method} - GET ALL REQUEST SUCCESSFUL`,
     });
@@ -21,7 +21,7 @@ const getAllTodos = async (req, res) => {
 //     }
 // });
 
-const getTodoById = async (req, res) => {
+const getTitlesById = async (req, res) => {
     const {id}  = req.params;
     console.log('Creating new todo with data >>>', id);
     res.status(200).json({ 
@@ -73,10 +73,10 @@ const getTodoById = async (req, res) => {
 //     });
 // });
 
-const createTodo = async (req, res) => {
-    const {todos}  = req.body;
+const createTitle = async (req, res) => {
+    const {titles}  = req.body;
     try {
-        const newTodos = await Todos.create(todos);
+        const newTodos = await Titles.create(titles);
         console.log('Creating new todo with data >>>', newTodos);
         res.status(200).json({ 
             success: true,
@@ -137,11 +137,11 @@ const createTodo = async (req, res) => {
 // });
 
 
-const updateTodo = async (req, res) => {
+const updateTitle = async (req, res) => {
     const  {id}  = req.params;
 try {
-    const todos = await Todos.findByIdAndUpdate(id, req.body, { new: true });
-    console.log('Creating new todo with data >>>', todos);
+    const title = await Titles.findByIdAndUpdate(id, req.body, { new: true });
+    console.log('Creating new todo with data >>>', title);
     res.status(200).json({ 
         data: todos,
         data: id,
@@ -202,13 +202,13 @@ catch (error) {
 //     });
 // });
 
-const deleteTodo = async (req, res) => {
+const deleteTitle = async (req, res) => {
     const  {id}  = req.params;
     try {
-        const todos = await Todos.findByIdAndDelete(id, req.body, { new: true });
+        const titles = await Titles.findByIdAndDelete(id, req.body, { new: true });
         console.log('Creating new todo with data >>>', todos);
         res.status(200).json({ 
-            data: todos,
+            data: titles,
             data: id,
             success: true,
             message: `${req.method} - CREATE REQUEST SUCCESSFUL`,
@@ -266,9 +266,9 @@ const deleteTodo = async (req, res) => {
 // });
 
 module.exports = {
-    getAllTodos,
-    getTodoById,
-    createTodo,
-    updateTodo,
-    deleteTodo,
+    getAllTitles,
+    getTitlesById,
+    createTitle,
+    updateTitle,
+    deleteTitle,
 };
