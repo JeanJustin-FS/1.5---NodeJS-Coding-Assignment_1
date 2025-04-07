@@ -2,8 +2,7 @@ const express = require('express');
 const app = express();
 const router = require ('./routes');
 const morgan = require('morgan');
-// const todoHandler = require('./routes/todoRoutes')
-// const middleware = require('./middleware');
+const middleware = require('./middleware');
 
 // middleware(app);
 app.use(express.json());
@@ -20,7 +19,7 @@ app.get('/', (req,res) => {
     });
 });
 
+//localhost:3000/api/v1/
 app.use('/api/v1',router);
-// app.use('/api/v1',todoHandler);
 
 module.exports = app; 

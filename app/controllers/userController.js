@@ -1,25 +1,47 @@
 const Titles = require('../models/Titles');
 // const {todoService,todoServiceById} = require('../services/todoService');
 
+//Get all titles
 const getAllTitles = async (req, res) => {
     const titles = await Titles.find({});
-    res.status(200).json({ 
-        data: titles,
-        success: true,
-        message: `${req.method} - GET ALL REQUEST SUCCESSFUL`,
-    });
+    try {
+        const titles = await Titles.find({});
+        console.log('Creating new todo with data >>>', titles);
+        res.status(200).json({ 
+            data: titles,
+            success: true,
+            message: `${req.method} - GET ALL REQUEST SUCCESSFUL`,
+        });
+    }
+    catch (error) {
+        console.error('Error creating todo:', error);
+        if (!res.headersSent) {
+            res.status(500).json({ error: error.message || 'Internal server error' });
+        }
+    }
 };
 
+//Get title by id
 const getTitlesById = async (req, res) => {
     const {id}  = req.params;
-    console.log('Creating new todo with data >>>', id);
-    res.status(200).json({ 
-        data: id,
-        success: true,
-        message: `${req.method} - CREATE REQUEST SUCCESSFUL`,
-    });
-};
+    try {   
+            const titles = await Titles.findById(id);
+            console.log('Creating new todo with data >>>', titles);
+            res.status(200).json({ 
+                data: titles,
+                success: true,
+                message: `${req.method} - GET ALL REQUEST SUCCESSFUL`,
+            });
+        }
+        catch (error) {
+            console.error('Error creating todo:', error);
+            if (!res.headersSent) {
+                res.status(500).json({ error: error.message || 'Internal server error' });
+            }
+        }
+    };
 
+//Create title
 const createTitle = async (req, res) => {
     const {titles}  = req.body;
     try {
@@ -43,6 +65,7 @@ const createTitle = async (req, res) => {
     }
 };
 
+//Update title
 const updateTitle = async (req, res) => {
     const  {id}  = req.params;
 try {
@@ -63,6 +86,7 @@ catch (error) {
 }
 };
 
+//Delete title
 const deleteTitle = async (req, res) => {
     const  {id}  = req.params;
     try {
